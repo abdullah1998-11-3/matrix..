@@ -1,0 +1,543 @@
+<html lang="en" manifest="cache.appcache">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PS4 Exploit Host by MATRIX</title>
+
+    <style>
+
+        :root {
+
+            --bg-color: #0d1117;
+
+            --card-bg: #161b22;
+
+            --accent-blue: #2f81f7;
+
+            --accent-gold: #d29922;
+
+            --accent-green: #238636;
+
+            --accent-red: #da3633;
+
+            --text-main: #c9d1d9;
+
+            --text-heading: #f0f6fc;
+
+            --border-color: #30363d;
+
+            --hover-brightness: 1.2;
+
+        }
+
+        * {
+
+            box-sizing: border-box;
+
+            margin: 0;
+
+            padding: 0;
+
+            user-select: none;
+
+            -webkit-user-select: none;
+
+        }
+
+        body {
+
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+            background-color: var(--bg-color);
+
+            color: var(--text-main);
+
+            display: flex;
+
+            flex-direction: column;
+
+            min-height: 100vh;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 20px;
+
+        }
+
+        header {
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            margin-bottom: 30px;
+
+        }
+
+        h1 {
+
+            color: var(--text-heading);
+
+            font-size: 2.2rem;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            text-shadow: 0 0 10px rgba(47, 129, 247, 0.5);
+
+            margin-bottom: 8px;
+
+        }
+
+        .status-bar {
+
+            font-size: 0.95rem;
+
+            color: #8b949e;
+
+            background: var(--card-bg);
+
+            padding: 8px 16px;
+
+            border-radius: 20px;
+
+            border: 1px solid var(--border-color);
+
+            display: inline-block;
+
+        }
+
+        .main-container {
+
+            width: 100%;
+
+            max-width: 900px;
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+            gap: 16px;
+
+            padding: 10px;
+
+        }
+
+        .btn {
+
+            background-color: var(--card-bg);
+
+            color: var(--text-heading);
+
+            border: 1px solid var(--border-color);
+
+            padding: 18px 20px;
+
+            font-size: 1rem;
+
+            font-weight: 600;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            transition: all 0.2s ease-in-out;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+            text-decoration: none;
+
+        }
+
+        .btn:hover, .btn:focus {
+
+            outline: none;
+
+            border-color: var(--accent-blue);
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 6px 12px rgba(47, 129, 247, 0.2);
+
+            filter: brightness(var(--hover-brightness));
+
+        }
+
+        .btn:active {
+
+            transform: translateY(0);
+
+        }
+
+        .btn-goldhen {
+
+            border-left: 4px solid var(--accent-gold);
+
+        }
+
+        .btn-fw {
+
+            border-left: 4px solid var(--accent-blue);
+
+        }
+
+        .btn-utility {
+
+            border-left: 4px solid var(--accent-green);
+
+        }
+
+        .btn-donate {
+
+            border-left: 4px solid var(--accent-red);
+
+        }
+
+        footer {
+
+            margin-top: 40px;
+
+            margin-bottom: 10px;
+
+            text-align: center;
+
+            font-size: 0.9rem;
+
+            color: #8b949e;
+
+            border-top: 1px solid var(--border-color);
+
+            padding-top: 15px;
+
+            width: 100%;
+
+            max-width: 900px;
+
+        }
+
+        .signature {
+
+            color: var(--accent-blue);
+
+            font-weight: bold;
+
+        }
+
+        /* Modal Styles for Action Confirmation */
+
+        .modal {
+
+            display: none;
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.8);
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 1000;
+
+        }
+
+        .modal-content {
+
+            background: var(--card-bg);
+
+            border: 1px solid var(--border-color);
+
+            padding: 24px;
+
+            border-radius: 10px;
+
+            max-width: 400px;
+
+            width: 90%;
+
+            text-align: center;
+
+        }
+
+        .modal-content h3 {
+
+            margin-bottom: 12px;
+
+            color: var(--text-heading);
+
+        }
+
+        .modal-content p {
+
+            margin-bottom: 20px;
+
+            font-size: 0.9rem;
+
+        }
+
+        .modal-buttons {
+
+            display: flex;
+
+            gap: 10px;
+
+            justify-content: center;
+
+        }
+
+        .btn-modal {
+
+            padding: 8px 16px;
+
+            font-size: 0.9rem;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>PS4 Exploit Host by MATRIX</h1>
+
+        <div class="status-bar" id="status">System Status: Ready</div>
+
+    </header>
+
+    <main class="main-container">
+
+        <button class="btn btn-goldhen" onclick="loadPayload('goldhen_multi')">GoldHEN Multi FW</button>
+
+        <button class="btn btn-fw" onclick="loadPayload('fw505_v25')">5.05 FW v2.5</button>
+
+        <button class="btn btn-goldhen" onclick="loadPayload('fw672_goldhen')">6.72 FW GoldHEN</button>
+
+        <button class="btn btn-fw" onclick="loadPayload('fw672_v30')">6.72 FW v3.0</button>
+
+        <button class="btn btn-goldhen" onclick="loadPayload('fw900_goldhen')">9.00 FW GoldHEN</button>
+
+        <button class="btn btn-fw" onclick="loadPayload('fw900_v30')">9.00 FW v3.0</button>
+
+        <button class="btn btn-utility" onclick="confirmRestore()">Restore Host</button>
+
+        <button class="btn btn-donate" onclick="openDonations()">Donations</button>
+
+    </main>
+
+    <footer>
+
+        Designed by: <span class="signature">@MATRIX</span>
+
+    </footer>
+
+    <div class="modal" id="restoreModal">
+
+        <div class="modal-content">
+
+            <h3>Restore Host Cache?</h3>
+
+            <p>This will clear the offline cache and re-initialize the application host environment.</p>
+
+            <div class="modal-buttons">
+
+                <button class="btn btn-utility btn-modal" onclick="executeRestore()">Confirm</button>
+
+                <button class="btn btn-modal" onclick="closeModal()">Cancel</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        // System Status Updates
+
+        function updateStatus(message) {
+
+            document.getElementById('status').innerText = 'Status: ' + message;
+
+        }
+
+        // Offline Cache Event Handling
+
+        if (window.applicationCache) {
+
+            window.applicationCache.addEventListener('checking', function() {
+
+                updateStatus('Checking cache update...');
+
+            }, false);
+
+            window.applicationCache.addEventListener('downloading', function() {
+
+                updateStatus('Downloading offline cache...');
+
+            }, false);
+
+            window.applicationCache.addEventListener('cached', function() {
+
+                updateStatus('Cached successfully for offline use');
+
+            }, false);
+
+            window.applicationCache.addEventListener('updateready', function() {
+
+                updateStatus('Cache update ready. Refreshing...');
+
+                window.applicationCache.swapCache();
+
+                location.reload();
+
+            }, false);
+
+            window.applicationCache.addEventListener('onerror', function() {
+
+                updateStatus('Offline Cache active / System Ready');
+
+            }, false);
+
+        }
+
+        // Payload Execution Router
+
+        function loadPayload(target) {
+
+            updateStatus('Loading ' + target + '...');
+
+            
+
+            // Map payloads to target paths or execution triggers
+
+            switch(target) {
+
+                case 'goldhen_multi':
+
+                    window.location.href = './payloads/goldhen_multi/index.html';
+
+                    break;
+
+                case 'fw505_v25':
+
+                    window.location.href = './payloads/505_v25/index.html';
+
+                    break;
+
+                case 'fw672_goldhen':
+
+                    window.location.href = './payloads/672_goldhen/index.html';
+
+                    break;
+
+                case 'fw672_v30':
+
+                    window.location.href = './payloads/672_v30/index.html';
+
+                    break;
+
+                case 'fw900_goldhen':
+
+                    window.location.href = './payloads/900_goldhen/index.html';
+
+                    break;
+
+                case 'fw900_v30':
+
+                    window.location.href = './payloads/900_v30/index.html';
+
+                    break;
+
+                default:
+
+                    updateStatus('Unknown target payload');
+
+            }
+
+        }
+
+        // Restore Host Functions
+
+        function confirmRestore() {
+
+            document.getElementById('restoreModal').style.display = 'flex';
+
+        }
+
+        function closeModal() {
+
+            document.getElementById('restoreModal').style.display = 'none';
+
+        }
+
+        function executeRestore() {
+
+            closeModal();
+
+            updateStatus('Clearing cache and restoring...');
+
+            if (window.navigator.serviceWorker) {
+
+                caches.keys().then(function(names) {
+
+                    for (let name of names) caches.delete(name);
+
+                });
+
+            }
+
+            localStorage.clear();
+
+            sessionStorage.clear();
+
+            setTimeout(function() {
+
+                updateStatus('Restored. Reloading page...');
+
+                location.reload(true);
+
+            }, 1000);
+
+        }
+
+        // Donations Action
+
+        function openDonations() {
+
+            window.location.href = './donations.html';
+
+        }
+
+    </script>
+
+</body>
+
+</html>
